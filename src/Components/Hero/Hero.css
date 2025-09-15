@@ -1,0 +1,283 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+    box-sizing: border-box;
+    width: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 120px;
+    padding: 50px 20px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 70px;
+}
+
+.hero-left {
+    position: relative;
+    z-index: 5; 
+}
+
+.hero-left img {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid transparent;
+    background: linear-gradient(135deg, #DF8908, #B415FF);
+    background-clip: padding-box;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25), 0 0 60px rgba(223,137,8,0.3), 0 0 90px rgba(180,21,255,0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border 0.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-left img:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35), 0 0 80px rgba(223,137,8,0.5), 0 0 120px rgba(180,21,255,0.4);
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.hero-left img::after {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #DF8908, #B415FF, #DF8908);
+    mix-blend-mode: overlay;
+    z-index: 0;
+    animation: rotateGradient 6s linear infinite;
+}
+
+@keyframes rotateGradient {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-right h1 {
+    font-size: 50px;
+    font-weight: 600;
+    margin: 0;
+    background: linear-gradient(270deg, #DF8908 10%, #B415FF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-right h2 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.typing {
+    font-weight: bold;
+    font-size: 40px;
+    background: linear-gradient(270deg, #DF8908 10%, #B415FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cursor {
+    display: inline-block;
+    width: 1ch;
+    animation: blink 0.7s infinite;
+    color: #DF8908;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+.hero-right p {
+    font-size: 24px;
+    line-height: 40px;
+    margin: 0;
+}
+
+.hero-action {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.hero-connect, .hero-resume {
+    padding: 20px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    min-width: 150px;
+    position: relative;
+    z-index: 20; /* ensure clickable on all devices */
+}
+
+.hero-connect {
+    background: linear-gradient(264deg, #DF8908 -5.09%, #B415FF 106.28%);
+    color: white;
+    transition: border 0.3s ease;
+    text-decoration: none;
+}
+.hero-connect a {
+  text-decoration: none;   
+  color: white;           
+  display: block;         
+  width: 100%;
+  height: 100%;
+}
+
+.hero-connect a:hover {
+  color: #fff; 
+}
+
+
+.hero-connect:hover {
+    border: 2px solid white;
+}
+
+.hero-resume {
+    border: 2px solid #FFF;
+}
+
+.hero-resume a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+    pointer-events: auto;
+}
+
+.hero-resume:hover {
+    border-color: #B415FF;
+}
+
+@media screen and (max-width: 1024px) {
+    .hero {
+        flex-direction: row;
+        gap: 60px;
+        padding: 40px 20px 80px 20px;
+        justify-content: center;
+    }
+    .hero-left img {
+        width: 280px;
+        height: 280px;
+    }
+    .hero-right h1 {
+        font-size: 46px;
+    }
+    .hero-right h2, .typing {
+        font-size: 36px;
+    }
+    .hero-right p {
+        font-size: 22px;
+        line-height: 36px;
+    }
+}
+
+/* 900px */
+@media screen and (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+    .hero-left img {
+        width: 250px;
+        height: 250px;
+    }
+    .hero-right h1 {
+        font-size: 42px;
+    }
+    .hero-right h2, .typing {
+        font-size: 32px;
+    }
+    .hero-right p {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    .hero-action {
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+/* 768px */
+@media screen and (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        gap: 40px;
+        padding: 60px 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .hero-left img {
+        width: 220px;
+        height: 220px;
+    }
+    .hero-right h1 {
+        font-size: 32px;
+    }
+    .hero-right h2, .typing {
+        font-size: 24px;
+    }
+    .hero-right p {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+/* 500px */
+@media screen and (max-width: 500px) {
+    .hero-left img {
+        width: 180px;
+        height: 180px;
+    }
+    .hero-right h1 {
+        font-size: 32px;
+    }
+    .hero-right h2, .typing {
+        font-size: 24px;
+    }
+    .hero-right p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .hero-action {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .hero-connect, .hero-resume {
+        font-size: 16px;
+        padding: 12px 20px;
+        min-width: 120px;
+    }
+}

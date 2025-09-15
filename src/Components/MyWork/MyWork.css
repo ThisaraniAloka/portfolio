@@ -1,0 +1,194 @@
+.mywork {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  margin: 80px 170px;
+}
+
+.mywork-title {
+  position: relative;
+}
+
+.mywork-title h1 {
+  position: relative;
+  display: inline-block;
+  font-size: 48px;
+  font-weight: 700;
+  color: #f5f5f5; 
+}
+
+.mywork-title h1::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #B415FF, #DF8908, #B415FF);
+  background-size: 300% 300%;
+  animation: gradientMove 5s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.mywork-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+.mywork-item {
+  position: relative;
+  border-radius: 14px; 
+  padding: 3px;        
+  background: transparent;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.mywork-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(270deg, #DF8908 50%, #B415FF 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 0;
+}
+
+.mywork-item:hover::before {
+  opacity: 1;
+}
+
+.mywork-item img {
+  width: 100%;
+  height: 280px;
+  display: block;
+  border-radius: 12px; 
+  transition: transform 0.4s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.mywork-item:hover img {
+  transform: scale(1.06);
+}
+
+.mywork-item:hover {
+  box-shadow: 
+    0 0 20px 6px rgba(223, 137, 8, 0.3),
+    0 0 30px 8px rgba(180, 21, 255, 0.3),
+    0 0 40px 10px rgba(223, 137, 8, 0.3),
+    0 0 60px 12px rgba(180, 21, 255, 0.3);
+}
+
+.github-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  font-size: 55px;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 3;
+  color: white;
+}
+
+.mywork-item:hover .github-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.github-svg {
+  fill: white;
+  transition: fill 0.4s;
+}
+
+.mywork-item:hover .github-svg path {
+  fill: url(#githubGradient);
+}
+
+.mywork-showmore {
+  display: flex;
+  gap: 15px;
+  border-radius: 50px;
+  padding: 10px 30px;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 80px;
+  transition: 0.6s;
+  cursor: pointer;
+  background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
+}
+
+.mywork-showmore:hover {
+  gap: 30px;
+  transition: 0.6s;
+}
+
+@media (max-width: 1200px) {
+  .mywork {
+    margin: 60px 100px;
+  }
+  .mywork-title h1 {
+    font-size: 50px;
+  }
+  .mywork-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .mywork-item img {
+    height: 240px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mywork {
+    margin: 50px 50px;
+    gap: 60px;
+  }
+  .mywork-title h1 {
+    font-size: 42px;
+  }
+  .mywork-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  .mywork-item img {
+    height: 220px;
+  }
+  .mywork-showmore {
+    padding: 8px 20px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mywork {
+    margin: 40px 20px;
+    gap: 40px;
+  }
+  .mywork-title h1 {
+    font-size: 32px;
+  }
+  .mywork-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .mywork-item img {
+    height: 200px;
+  }
+  .mywork-showmore {
+    padding: 8px 20px;
+    font-size: 18px;
+  }
+}
