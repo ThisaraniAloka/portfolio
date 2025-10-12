@@ -5,7 +5,7 @@ import profile_img from "../../assets/profile_img.jpg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Hero = () => {
-  const roles = ["Frontend Developer", "Backend Developer", "Full Stack Developer"];
+  const roles = ["Software Engineer","Frontend Developer", "Backend Developer", "Full Stack Developer"];
   const [text, setText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -51,8 +51,7 @@ const Hero = () => {
 
 
         <p>
-          Aspiring Full Stack Developer and 3rd-year Computing & Information
-          Systems student with skills in both front-end and back-end development.
+          Self-driven Computing & Information Systems undergraduate at Sabaragamuwa University of Sri Lanka, skilled in MERN stack development, software design, and database management. Passionate about building efficient and reliable software solutions while collaborating in teams
         </p>
 
         <div className="hero-action">

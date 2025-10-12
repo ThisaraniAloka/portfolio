@@ -17,6 +17,8 @@ import project15_img from '../assets/15.jpg'
 import project16_img from '../assets/16.jpg'
 import project17_img from '../assets/17.jpg'
 import project18_img from '../assets/18.jpg'
+import project21_img from '../assets/21.png'
+import project20_img from '../assets/20.png'
 
 const mywork_data = [
     {
@@ -24,6 +26,18 @@ const mywork_data = [
         w_name:"Web design",
         w_img:project1_img,
         github: "https://github.com/ThisaraniAloka/carRentWeb.git"
+    },
+    {
+        w_no:1,
+        w_name:"Web design",
+        w_img:project21_img,
+        github: "https://github.com/NavinduR2001/hand-sign-recognize-mobile-app.git"
+    },
+    {
+        w_no:1,
+        w_name:"Web design",
+        w_img:project20_img,
+        github: "https://github.com/ThisaraniAloka/KeyboardWebsite.git"
     },
     {
         w_no:2,
