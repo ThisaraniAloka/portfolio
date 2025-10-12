@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import './MyWork.css'
-import mywork_data from '../../assets/mywork_data'
-import arrow_icon from '../../assets/arrow_icon.svg'
+import React, { useState } from 'react';
+import './MyWork.css';
+import mywork_data from '../../assets/mywork_data';
+import arrow_icon from '../../assets/arrow_icon.svg';
 
 const MyWork = () => {
-  const [visibleCount, setVisibleCount] = useState(6)
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const showMoreHandler = () => {
-    setVisibleCount(prevCount => prevCount + 6)
-  }
+    setVisibleCount(prevCount => prevCount + 6);
+  };
 
   return (
     <div id='work' className='mywork'>
@@ -21,27 +21,29 @@ const MyWork = () => {
           <div key={index} className="mywork-item">
             <img src={work.w_img} alt={work.w_name} />
 
-            {/* GitHub Icon */}
-            <a 
-              href={work.github} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="github-icon"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 496 512" 
-                width="50" 
-                height="50"
-                className="github-svg"
+            {/* Overlay content */}
+            <div className="overlay">
+              <p className="project-name">{work.w_name}</p>
+              <a 
+                href={work.github} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="github-icon"
               >
-                <defs>
-                  <linearGradient id="githubGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#DF8908" />
-                    <stop offset="100%" stopColor="#B415FF" />
-                  </linearGradient>
-                </defs>
-                <path 
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 496 512" 
+                  width="50" 
+                  height="50"
+                  className="github-svg"
+                >
+                  <defs>
+                    <linearGradient id="githubGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#DF8908" />
+                      <stop offset="100%" stopColor="#B415FF" />
+                    </linearGradient>
+                  </defs>
+                  <path 
                   d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6
                      -3.3 0-5.6-1.6-5.6-3.6 0-2 2.3-3.6
                      5.2-3.6 3.3 0 5.6 1.6 5.6 3.6zm-31.1
@@ -73,8 +75,9 @@ const MyWork = () => {
                      8 244 8z"
                   fill="currentColor"
                 />
-              </svg>
-            </a>
+                </svg>
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -86,7 +89,7 @@ const MyWork = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default MyWork
+export default MyWork;
