@@ -10,7 +10,9 @@
 }
 
 /* Title */
-.about-title { position: relative; }
+.about-title {
+  position: relative;
+}
 
 .about-title h1 {
   position: relative;
@@ -31,10 +33,17 @@
   background-size: 300% 300%;
   animation: gradientMove 5s ease infinite;
 }
+
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Grid container */
@@ -43,34 +52,41 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
-  grid-auto-rows: 280px;
-  align-items: stretch;
+  grid-auto-rows: 380px; /* 🔹 increased card height */
+  align-items: center;
   justify-items: center;
-  min-height: 320px;
+  min-height: 380px;
 }
 
 /* Card */
 .about-item {
   width: 100%;
-  height: 100%;
-  border-radius: 14px;
+  height: 280px;
+  border-radius: 16px;
   overflow: hidden;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; /* For hover overlay */
+  position: relative;
 }
 
+/* Image inside card */
 .about-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; 
   border-radius: 12px;
   transition: transform 0.4s ease;
   aspect-ratio: 16/9;
+  padding: 0px;
+}
+
+/* Optional: enlarge image slightly on hover */
+.about-item:hover img {
+  transform: scale(1.05);
 }
 
 /* Hover overlay for skill name */
@@ -111,7 +127,9 @@
   background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
   transition: all 0.4s ease;
 }
-.about-showmore:hover { width: 270px; }
+.about-showmore:hover {
+  width: 270px;
+}
 
 /* Section Titles */
 section h3 {
@@ -123,29 +141,61 @@ section h3 {
   background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* Make sure it displays properly */
   display: inline-block;
+}
+.certificates-section .about-container, .skills-section .about-container {
+  grid-auto-rows: 260px ; 
+  row-gap: 40px; 
 }
 
 
-/* Responsive */
+/* ---------------- Responsive ---------------- */
 @media (max-width: 1200px) {
-  .about { margin: 60px 100px; }
-  .about-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; grid-auto-rows: 240px; min-height: 260px; }
-  .about-item img { aspect-ratio: 4/3; }
+  .about {
+    margin: 60px 100px;
+  }
+  .about-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+    grid-auto-rows: 300px;
+    min-height: 300px;
+  }
 }
 
 @media (max-width: 900px) {
-  .about { margin: 50px 50px; gap: 60px; }
-  .about-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; grid-auto-rows: 220px; min-height: 240px; }
-  .about-item img { aspect-ratio: 4/3; }
-  .about-showmore { padding: 8px 20px; font-size: 20px; }
+  .about {
+    margin: 50px 50px;
+    gap: 60px;
+  }
+  .about-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    grid-auto-rows: 260px;
+    min-height: 260px;
+  }
+  .about-showmore {
+    padding: 8px 20px;
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 600px) {
-  .about { margin: 40px 20px; gap: 40px; }
-  .about-container { grid-template-columns: 1fr; gap: 20px; grid-auto-rows: 200px; min-height: 220px; }
-  .about-item img { height: 100%; aspect-ratio: auto; }
-  .about-showmore { padding: 8px 20px; font-size: 18px; }
+  .about {
+    margin: 40px 20px;
+    gap: 40px;
+  }
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    grid-auto-rows: 240px;
+    min-height: 240px;
+  }
+  .about-item img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .about-showmore {
+    padding: 8px 20px;
+    font-size: 18px;
+  }
 }
