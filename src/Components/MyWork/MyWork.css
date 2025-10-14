@@ -88,6 +88,28 @@
   transform: scale(0.8);
   transition: transform 0.4s ease;
 }
+/* Add these styles to your existing CSS */
+
+.github-svg {
+  filter: drop-shadow(0 0 8px rgba(180, 21, 255, 0.3));
+  transition: all 0.4s ease;
+}
+
+.github-icon:hover .github-svg {
+  filter: drop-shadow(0 0 12px rgba(180, 21, 255, 0.6));
+  transform: scale(1.1);
+}
+
+/* Optional: Add animation to the gradient */
+@keyframes gradientShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(30deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+.github-icon:hover .github-svg {
+  animation: gradientShift 2s ease-in-out infinite;
+}
 
 .mywork-item:hover .github-icon {
   transform: scale(1);

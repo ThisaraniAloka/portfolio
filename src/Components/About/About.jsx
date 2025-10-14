@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import arrow_icon from '../../assets/arrow_icon.svg'
+import arrow_icon from "../../assets/arrow_icon.svg";
 import "./About.css";
 
-// Import skill logos
+// 🔹 Skill logos
 import skill1 from "../../assets/skills/angular.svg";
 import skill2 from "../../assets/skills/bootstrap.svg";
 import skill3 from "../../assets/skills/css.svg";
@@ -18,7 +18,7 @@ import skill12 from "../../assets/skills/php.svg";
 import skill13 from "../../assets/skills/react.svg";
 import skill14 from "../../assets/skills/tailwind.svg";
 
-// Import certificates
+// 🔹 Certificates
 import certificate1 from "../../assets/certificate1.jpg";
 import certificate2 from "../../assets/certificate2.jpg";
 import certificate3 from "../../assets/certificate3.jpg";
@@ -30,9 +30,6 @@ import certificate8 from "../../assets/certificate8.jpg";
 import certificate9 from "../../assets/certificate9.jpg";
 
 const About = () => {
-  const [visibleSkills, setVisibleSkills] = useState(3);
-  const [visibleCertificates, setVisibleCertificates] = useState(3);
-
   const skills = [
     skill1, skill2, skill3, skill4, skill5, skill6,
     skill7, skill8, skill9, skill10, skill11, skill12, skill13, skill14
@@ -48,9 +45,11 @@ const About = () => {
     certificate6, certificate7, certificate8, certificate9
   ];
 
-  const showMoreSkills = () => {
-    setVisibleSkills((prev) => Math.min(prev + 3, skills.length));
-  };
+  const [visibleCertificates, setVisibleCertificates] = useState(3);
+
+  // 🔹 Create TRIPLICATED array for perfect infinite scroll
+  const triplicatedSkills = [...skills, ...skills, ...skills];
+  const triplicatedSkillNames = [...skillNames, ...skillNames, ...skillNames];
 
   const showMoreCertificates = () => {
     setVisibleCertificates((prev) => Math.min(prev + 3, certificates.length));
@@ -62,27 +61,25 @@ const About = () => {
         <h1>About Me</h1>
       </div>
 
-      {/* My Skills */}
+      {/* 🔹 Skills Carousel - Perfect Infinite Scroll */}
       <section className="skills-section">
         <h3>My Skills</h3>
-        <div className="about-container">
-          {skills.slice(0, visibleSkills).map((skill, index) => (
-            <div key={index} className="about-item">
-              <img src={skill} alt={`Skill ${index + 1}`} />
-              <span className="skill-name">{skillNames[index]}</span>
-            </div>
-          ))}
-        </div>
 
-        {visibleSkills < skills.length && (
-          <div className="about-showmore" onClick={showMoreSkills}>
-            <p>Show More</p>
-            <img src={arrow_icon} alt="arrow" />
+        <div className="carousel-wrapper">
+          <div className="carousel-container">
+            <div className="carousel-track">
+              {triplicatedSkills.map((skill, index) => (
+                <div className="skill-card" key={index}>
+                  <img src={skill} alt={`Skill ${index + 1}`} />
+                  <p className="carousel-skill-name">{triplicatedSkillNames[index]}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        )}
+        </div>
       </section>
 
-      {/* Certificates */}
+      {/* 🔹 Certificates Section */}
       <section className="certificates-section">
         <h3>Certificates</h3>
         <div className="about-container">
