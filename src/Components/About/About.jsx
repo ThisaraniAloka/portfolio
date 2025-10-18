@@ -61,7 +61,7 @@ const About = () => {
         <h1>About Me</h1>
       </div>
 
-      {/* 🔹 Skills Carousel - Perfect Infinite Scroll */}
+      {/* 🔹 Skills Carousel - Fixed Perfect Infinite Scroll */}
       <section className="skills-section">
         <h3>My Skills</h3>
 

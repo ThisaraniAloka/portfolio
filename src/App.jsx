@@ -9,6 +9,7 @@ import Services from './Components/Services/Services'
 import MyWork from './Components/MyWork/MyWork'
 import Contact from './Components/Contact/Contact'
 import Footer from './Components/Footer/Footer'
+import BackToTop from './Components/BackToTop/BackToTop'
 
 const App = () => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const App = () => {
   return (
     <div>
       
-        <div className="navbar-wrapper">
+        <div id='top' className="navbar-wrapper">
           <Navbar />
         </div>
       
@@ -42,6 +43,7 @@ const App = () => {
         <Contact />
       </div>
       <Footer />
+      <BackToTop />
     </div>
   )
 }

@@ -1,11 +1,15 @@
-// Hero.jsx
 import React, { useState, useEffect } from "react";
 import "./Hero.css";
 import profile_img from "../../assets/profile_img.jpg";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Hero = () => {
-  const roles = ["Software Engineer","Frontend Developer", "Backend Developer", "Full Stack Developer"];
+  const roles = [
+    "Software Engineer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Full Stack Developer",
+  ];
   const [text, setText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -38,6 +42,13 @@ const Hero = () => {
 
   return (
     <div id="home" className="hero">
+      {/* 🌟 Background balls */}
+      <div className="background-animation">
+        {[...Array(50)].map((_, i) => (
+          <span key={i} className="circle" style={{ "--i": i }}></span>
+        ))}
+      </div>
+
       <div className="hero-left">
         <img src={profile_img} alt="Profile" />
       </div>
@@ -45,13 +56,16 @@ const Hero = () => {
       <div className="hero-right">
         <h1>I'm Thisarani Aloka</h1>
         <h2>
-  <span className="typing">{text}</span>
-  <span className="cursor">|</span>
-</h2>
-
+          <span className="typing">{text}</span>
+          <span className="cursor">|</span>
+        </h2>
 
         <p>
-          Self-driven Computing & Information Systems undergraduate at Sabaragamuwa University of Sri Lanka, skilled in MERN stack development, software design, and database management. Passionate about building efficient and reliable software solutions while collaborating in teams
+          Self-driven Computing & Information Systems undergraduate at
+          Sabaragamuwa University of Sri Lanka, skilled in MERN stack
+          development, software design, and database management. Passionate
+          about building efficient and reliable software solutions while
+          collaborating in teams.
         </p>
 
         <div className="hero-action">
@@ -61,7 +75,11 @@ const Hero = () => {
             </AnchorLink>
           </div>
           <div className="hero-resume">
-            <a href="/Thisarani_Aloka_CV.pdf" target="_blank" rel="noopener noreferrer">
+            <a
+              href="/Thisarani_Aloka_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Download CV
             </a>
           </div>

@@ -44,16 +44,52 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Section Titles */
-.skills-section h3,
-.certificates-section h3 {
-  text-align: center;
+.skills-section h3
+{
   font-size: 36px;
   margin-bottom: 40px;
-  background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
+  text-align: center;
+
+  /* Gradient */
+  background: linear-gradient(270deg, #DF8908 10%, #B415FF 100%);
+  background-size: 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  /* Inline-block with full width centering */
   display: inline-block;
+  width: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.certificates-section h3 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  text-align: center;
+
+  /* Enhanced Gradient Support */
+  background: linear-gradient(270deg, #DF8908 10%, #B415FF 100%);
+  background: -webkit-linear-gradient(270deg, #DF8908 10%, #B415FF 100%);
+  background: -moz-linear-gradient(270deg, #DF8908 10%, #B415FF 100%);
+  background-size: 100%;
+  
+  /* Webkit (Chrome, Safari, newer Edge) */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Firefox */
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  
+  /* Standard */
+  background-clip: text;
+  color: transparent;
+
+  display: block;
   width: 100%;
 }
 
@@ -188,43 +224,39 @@
 /* ===================================================
    🔹 Show More Button - Fixed Single Row
 =================================================== */
+
+
 .about-showmore {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border-radius: 40px;
-  padding: 12px 30px;
-  font-size: 18px;
+  gap: 15px;
+  border-radius: 50px;
+  padding: 30px 30px;
+  font-size: 22px;
   font-weight: 500;
-  margin: 40px auto 0;
+  margin: 40px auto 80px;
   cursor: pointer;
   background: linear-gradient(267deg, #DA7C25 0.36%, #B923E1 102.06%);
-  transition: all 0.3s ease;
+  transition: 0.6s;
+  color: #fff;
+  box-shadow: none;
   border: none;
-  color: white;
-  box-shadow: 0 4px 10px rgba(218, 124, 37, 0.3);
-  white-space: nowrap;
-  min-width: 160px;
-  min-height: 80px;
-  flex-shrink: 0;
 }
 
 .about-showmore:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(185, 35, 225, 0.4);
+  gap: 30px;
 }
 
 .about-showmore p {
   margin: 0;
-  display: inline;
 }
 
 .about-showmore img {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
 }
+
 
 /* ===================================================
    🔹 Responsive Design - All Devices
