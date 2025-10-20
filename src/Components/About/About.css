@@ -1,4 +1,83 @@
 .about {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 🌟 Thunder Line Cursor Effect */
+.thunder-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.thunder-line {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+  transform: translate(-50%, -50%);
+  transition: all 0.05s linear;
+  animation: thunderPulse 0.3s ease-in-out infinite alternate;
+}
+
+.thunder-core {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 
+    0 0 20px #00ffff,
+    0 0 40px #ff00ff,
+    0 0 60px #ffff00;
+  transform: translate(-50%, -50%);
+  animation: corePulse 0.4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes thunderPulse {
+  0% {
+    box-shadow: 
+      0 0 5px #00ffff,
+      0 0 10px #ff00ff,
+      0 0 15px #ffff00;
+  }
+  100% {
+    box-shadow: 
+      0 0 15px #00ffff,
+      0 0 25px #ff00ff,
+      0 0 35px #ffff00;
+  }
+}
+
+@keyframes corePulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* 🔥 FIX: Disable thunder cursor completely on devices under 1024px */
+@media (max-width: 1024px) {
+  .thunder-container {
+    display: none;
+  }
+}
+
+/* Rest of your existing CSS remains exactly the same */
+/* Main content wrapper */
+.about-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +87,8 @@
   color: #fff;
   box-sizing: border-box;
   width: calc(100% - 340px);
+  position: relative;
+  z-index: 2;
 }
 
 /* Title */
@@ -151,7 +232,7 @@
   filter: grayscale(20%);
   padding: 10px;
   backdrop-filter: blur(10px);
-  
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .skill-card:hover img {
@@ -225,7 +306,6 @@
    🔹 Show More Button - Fixed Single Row
 =================================================== */
 
-
 .about-showmore {
   display: flex;
   align-items: center;
@@ -257,14 +337,13 @@
   height: 25px;
 }
 
-
 /* ===================================================
    🔹 Responsive Design - All Devices
 =================================================== */
 
 /* Large Desktop */
 @media (max-width: 1440px) {
-  .about {
+  .about-content {
     margin: 70px 120px;
     width: calc(100% - 240px);
   }
@@ -272,7 +351,7 @@
 
 /* Desktop */
 @media (max-width: 1200px) {
-  .about {
+  .about-content {
     margin: 60px 80px;
     width: calc(100% - 160px);
     gap: 70px;
@@ -294,7 +373,7 @@
 
 /* Tablet Landscape */
 @media (max-width: 1024px) {
-  .about {
+  .about-content {
     margin: 50px 60px;
     width: calc(100% - 120px);
     gap: 60px;
@@ -331,10 +410,22 @@
     gap: 30px;
   }
 }
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  /* Optional: Adjust the initial visible certificates display */
+  .certificates-section .about-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 /* Tablet Portrait */
 @media (max-width: 768px) {
-  .about {
+  .about-content {
     margin: 40px 40px;
     width: calc(100% - 80px);
     gap: 50px;
@@ -391,7 +482,7 @@
 
 /* Mobile Large */
 @media (max-width: 600px) {
-  .about {
+  .about-content {
     margin: 30px 20px;
     width: calc(100% - 40px);
     gap: 40px;
@@ -447,7 +538,7 @@
 
 /* Mobile Small */
 @media (max-width: 480px) {
-  .about {
+  .about-content {
     margin: 25px 15px;
     width: calc(100% - 30px);
     gap: 35px;
@@ -503,7 +594,7 @@
 
 /* Very Small Mobile */
 @media (max-width: 360px) {
-  .about {
+  .about-content {
     margin: 20px 10px;
     width: calc(100% - 20px);
     gap: 30px;

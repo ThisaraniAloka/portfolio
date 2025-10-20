@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import arrow_icon from "../../assets/arrow_icon.svg";
 import "./About.css";
 
@@ -46,57 +46,131 @@ const About = () => {
   ];
 
   const [visibleCertificates, setVisibleCertificates] = useState(3);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [trail, setTrail] = useState([]);
 
-  // 🔹 Create TRIPLICATED array for perfect infinite scroll
+  // 🔹 Thunder line cursor effect
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const newPos = { x: e.clientX, y: e.clientY, id: Date.now() };
+      setCursorPos(newPos);
+      
+      // Add to trail for lightning effect
+      setTrail(prev => {
+        const newTrail = [newPos, ...prev].slice(0, 8); // Keep last 8 positions
+        return newTrail;
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // 🔹 Initialize visible certificates based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width <= 1024 && width > 768) {
+        // Tablet size: show 4 certificates initially
+        setVisibleCertificates(4);
+      } else {
+        // Other sizes: show 3 certificates initially
+        setVisibleCertificates(3);
+      }
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // 🔹 Triplicated arrays for smooth infinite scroll
   const triplicatedSkills = [...skills, ...skills, ...skills];
   const triplicatedSkillNames = [...skillNames, ...skillNames, ...skillNames];
 
   const showMoreCertificates = () => {
-    setVisibleCertificates((prev) => Math.min(prev + 3, certificates.length));
+    const width = window.innerWidth;
+    let increment = 3; // Default increment
+    
+    if (width <= 1024 && width > 768) {
+      // Tablet size: increment by 2
+      increment = 2;
+    }
+    
+    setVisibleCertificates((prev) => Math.min(prev + increment, certificates.length));
   };
 
   return (
     <div id="about" className="about">
-      <div className="about-title">
-        <h1>About Me</h1>
+      {/* 🔹 Thunder line cursor effect */}
+      <div className="thunder-container">
+        {trail.map((pos, index) => (
+          <div
+            key={pos.id}
+            className="thunder-line"
+            style={{
+              left: `${pos.x}px`,
+              top: `${pos.y}px`,
+              opacity: 1 - (index * 0.12),
+              transform: `scale(${1 - (index * 0.1)})`,
+              filter: `blur(${index * 0.8}px)`,
+            }}
+          />
+        ))}
+        <div
+          className="thunder-core"
+          style={{
+            left: `${cursorPos.x}px`,
+            top: `${cursorPos.y}px`,
+          }}
+        />
       </div>
 
-      {/* 🔹 Skills Carousel - Fixed Perfect Infinite Scroll */}
-      <section className="skills-section">
-        <h3>My Skills</h3>
-
-        <div className="carousel-wrapper">
-          <div className="carousel-container">
-            <div className="carousel-track">
-              {triplicatedSkills.map((skill, index) => (
-                <div className="skill-card" key={index}>
-                  <img src={skill} alt={`Skill ${index + 1}`} />
-                  <p className="carousel-skill-name">{triplicatedSkillNames[index]}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 🔹 Certificates Section */}
-      <section className="certificates-section">
-        <h3>Certificates</h3>
-        <div className="about-container">
-          {certificates.slice(0, visibleCertificates).map((cert, index) => (
-            <div key={index} className="about-item">
-              <img src={cert} alt={`Certificate ${index + 1}`} />
-            </div>
-          ))}
+      <div className="about-content">
+        <div className="about-title">
+          <h1>About Me</h1>
         </div>
 
-        {visibleCertificates < certificates.length && (
-          <div className="about-showmore" onClick={showMoreCertificates}>
-            <p>Show More</p>
-            <img src={arrow_icon} alt="arrow" />
+        {/* Skills Carousel */}
+        <section className="skills-section">
+          <h3>My Skills</h3>
+
+          <div className="carousel-wrapper">
+            <div className="carousel-container">
+              <div className="carousel-track">
+                {triplicatedSkills.map((skill, index) => (
+                  <div className="skill-card" key={index}>
+                    <img src={skill} alt={`Skill ${index + 1}`} />
+                    <p className="carousel-skill-name">{triplicatedSkillNames[index]}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        )}
-      </section>
+        </section>
+
+        {/* Certificates Section */}
+        <section className="certificates-section">
+          <h3>Certificates</h3>
+          <div className="about-container">
+            {certificates.slice(0, visibleCertificates).map((cert, index) => (
+              <div key={index} className="about-item">
+                <img src={cert} alt={`Certificate ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+
+          {visibleCertificates < certificates.length && (
+            <div className="about-showmore" onClick={showMoreCertificates}>
+              <p>Show More</p>
+              <img src={arrow_icon} alt="arrow" />
+            </div>
+          )}
+        </section>
+      </div>
     </div>
   );
 };
