@@ -12,6 +12,7 @@ const MyWork = () => {
 
   return (
     <div id='work' className='mywork'>
+      {/* Keep original title */}
       <div className="mywork-title">
         <h1>My Latest Work</h1>
       </div>
@@ -19,70 +20,95 @@ const MyWork = () => {
       <div className="mywork-container">
         {mywork_data.slice(0, visibleCount).map((work, index) => (
           <div key={index} className="mywork-item">
-            <img src={work.w_img} alt={work.w_name} />
-
-            {/* Overlay content */}
-            <div className="overlay">
-              <p className="project-name">{work.w_name}</p>
-              <a 
-                href={work.github} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="github-icon"
-              >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 496 512" 
-                  width="50" 
-                  height="50"
-                  className="github-svg"
-                >
-                  <defs>
-                    <linearGradient id="githubGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#B415FF" />
-                      <stop offset="50%" stopColor="#DF8908" />
-                      <stop offset="100%" stopColor="#B415FF" />
-                    </linearGradient>
-                  </defs>
-                  <path 
-                    d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6
-                       -3.3 0-5.6-1.6-5.6-3.6 0-2 2.3-3.6
-                       5.2-3.6 3.3 0 5.6 1.6 5.6 3.6zm-31.1
-                       -2.2c-.7 2 .8 4.3 3.3 5.2 2.5.9 5.4 
-                       0 6.1-2 .7-2-.8-4.3-3.3-5.2-2.5-.9-5.4
-                       0-6.1 2zm44.2-1.7c-2.9.8-4.9 2.9-4.4
-                       5.1.5 2.2 3.2 3.4 6.1 2.6 2.9-.8 
-                       4.9-2.9 4.4-5.1-.5-2.1-3.2-3.4-6.1-2.6zM244 
-                       8C108.9 8 0 117.2 0 252.3c0 108.3 
-                       69.8 200.3 166.4 232.9 12.2 2.2 
-                       16.6-5.3 16.6-11.7 0-5.8-.2-24.9-.3-45.1
-                       -67.7 14.7-82-32.6-82-32.6-11.1-28.3
-                       -27-35.9-27-35.9-22.1-15.1 1.7-14.8
-                       1.7-14.8 24.4 1.7 37.3 25.1 37.3 
-                       25.1 21.7 37.2 56.9 26.5 70.8 
-                       20.3 2.2-15.7 8.5-26.5 15.4-32.6
-                       -54-6.1-110.8-27-110.8-119.8 0-26.5 
-                       9.5-48.2 25.1-65.2-2.5-6.2-10.9-31.1 
-                       2.4-64.8 0 0 20.5-6.6 67.2 25.1 
-                       19.5-5.5 40.4-8.2 61.3-8.3 20.9.1 
-                       41.8 2.8 61.3 8.3 46.6-31.7 67.1-25.1 
-                       67.1-25.1 13.3 33.7 4.9 58.6 
-                       2.4 64.8 15.6 17 25.1 38.7 
-                       25.1 65.2 0 92.9-56.9 113.6-111.1 
-                       119.6 8.7 7.6 16.5 22.6 16.5 45.6 
-                       0 32.9-.3 59.4-.3 67.5 0 6.5 4.4 
-                       13.9 16.7 11.6C426.2 452.6 496 
-                       360.6 496 252.3 496 117.2 383.1 
-                       8 244 8z"
-                    fill="url(#githubGradient)"
-                  />
-                </svg>
-              </a>
+            <div className="image-container">
+              <img src={work.w_img} alt={work.w_name} />
+              
+              {/* Modern Overlay */}
+              <div className="modern-overlay">
+                <div className="overlay-content">
+                  <h3 className="project-name">{work.w_name}</h3>
+                  
+                  <div className="action-buttons">
+                    {work.github && (
+                      <a 
+                        href={work.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="icon-btn github-btn"
+                        aria-label={`View ${work.w_name} on GitHub`}
+                      >
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" 
+                          width="24" 
+                          height="24"
+                        >
+                          <path 
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span>Code</span>
+                      </a>
+                    )}
+                    
+                    {work.demo && (
+                      <a 
+                        href={work.demo} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="icon-btn demo-btn"
+                        aria-label={`View ${work.w_name} demo`}
+                      >
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" 
+                          width="24" 
+                          height="24"
+                        >
+                          <path 
+                            d="M8 5v14l11-7z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span>Demo</span>
+                      </a>
+                    )}
+                    
+                    {!work.demo && work.github && (
+                      <a 
+                        href={work.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="icon-btn demo-btn"
+                        aria-label={`View ${work.w_name} code`}
+                      >
+                        <svg 
+                          xmlns="http://www.w3.org/2000/svg" 
+                          viewBox="0 0 24 24" 
+                          width="24" 
+                          height="24"
+                        >
+                          <path 
+                            d="M8 5v14l11-7z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <span>View Code</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Hover Glow Effect */}
+              <div className="hover-glow"></div>
             </div>
           </div>
         ))}
       </div>
 
+      
       {visibleCount < mywork_data.length && (
         <div className='mywork-showmore' onClick={showMoreHandler}>
           <p>Show More</p>
