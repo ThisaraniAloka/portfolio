@@ -152,13 +152,16 @@ const About = () => {
           </div>
         </section>
 
-        {/* Certificates Section */}
+        {/* Enhanced Certificates Section */}
         <section className="certificates-section">
           <h3>Certificates</h3>
-          <div className="about-container">
+          <div className="certificates-container">
             {certificates.slice(0, visibleCertificates).map((cert, index) => (
-              <div key={index} className="about-item">
-                <img src={cert} alt={`Certificate ${index + 1}`} />
+              <div key={index} className="certificate-card">
+                <div className="certificate-image-wrapper">
+                  <img src={cert} alt={`Certificate ${index + 1}`} className="certificate-img" />
+                </div>
+                <div className="certificate-glow"></div>
               </div>
             ))}
           </div>
