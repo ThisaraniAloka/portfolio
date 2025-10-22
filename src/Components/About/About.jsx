@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import arrow_icon from "../../assets/arrow_icon.svg";
 import "./About.css";
 
@@ -41,8 +42,15 @@ const About = () => {
   ];
 
   const certificates = [
-    certificate1, certificate2, certificate3, certificate4, certificate5,
-    certificate6, certificate7, certificate8, certificate9
+    { image: certificate1, url: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiI1MjYxIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODg5MjcxNl85MjcxNTU1MTc1NjcyNzc2MDE5NS5wbmciLCJ1c2VybmFtZSI6IlRoaXNhcmFuaSBBbG9rYSJ9&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F8252%2FFree%2520Full%2520Stack%2520Developer%2520Course%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1509413190627268808&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVD%2FIvLk90T%2FTIDU%2ByrytKTUstKsrMS49PKsovL04tsnVNSU8FAOA4PZ09AAAA" },
+    { image: certificate2, url: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIzMjM2IiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODg1Nzg4NF85MjE2NTM1MTc1NjE3NjYwMDkyOS5wbmciLCJ1c2VybmFtZSI6IlRoaXNhcmFuaSBBbG9rYSBCYW5kYXJhIn0%3D&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F6023%2FJava%2520Programming%2520for%2520Beginners%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1509413190627268808&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVz%2FIICzVI9vLIDU%2ByrytKTUstKsrMS49PKsovL04tsnVNSU8FAMX7v909AAAA" },
+    { image: certificate3, url: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIzMzM3IiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODg3MjE2OF85MjE2NTM1MTc1NjM4NDI0MDY4Ni5wbmciLCJ1c2VybmFtZSI6IlRoaXNhcmFuaSBBbG9rYSJ9&utm_source=shared-certificate&utm_medium=lms&utm_campaign=shared-certificate-promotion&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F6129%2FIntroduction-to-MERN-Stack%2Fcertificate%2Fdownload-skillup&%24web_only=true&_branch_match_id=1509413190627268808&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXL87MLcjJ1EssKNDLyczL1k%2FVT803SwnxTylLDk%2ByrytKTUstKsrMS49PKsovL04tsnVNSU8FAGh9G2Y9AAAA" },
+    { image: certificate4, url: "https://simpli-web.app.link/e/NLSi5GoiFXb" },
+    { image: certificate5, url: "https://www.hackerrank.com/certificates/iframe/5d0745db29f0" },
+    { image: certificate6, url: "https://www.hackerrank.com/certificates/iframe/59994abedc5f" },
+    { image: certificate7, url: "https://www.hackerrank.com/certificates/iframe/1a7c24a5882b" },
+    { image: certificate8, url: "https://www.hackerrank.com/certificates/iframe/db66b9a3f511" },
+    { image: certificate9, url: "https://www.hackerrank.com/certificates/iframe/6fee7445f842" }
   ];
 
   const [visibleCertificates, setVisibleCertificates] = useState(3);
@@ -103,6 +111,10 @@ const About = () => {
     setVisibleCertificates((prev) => Math.min(prev + increment, certificates.length));
   };
 
+  const handleCertificateClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div id="about" className="about">
       {/* 🔹 Thunder line cursor effect */}
@@ -157,9 +169,25 @@ const About = () => {
           <h3>Certificates</h3>
           <div className="certificates-container">
             {certificates.slice(0, visibleCertificates).map((cert, index) => (
-              <div key={index} className="certificate-card">
+              <div 
+                key={index} 
+                className="certificate-card"
+              >
                 <div className="certificate-image-wrapper">
-                  <img src={cert} alt={`Certificate ${index + 1}`} className="certificate-img" />
+                  <img src={cert.image} alt={`Certificate ${index + 1}`} className="certificate-img" />
+                  
+                  {/* Hover Overlay with Link Icon Only */}
+                  <div className="certificate-overlay">
+                    <div 
+                      className="link-icon-container"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent event bubbling
+                        handleCertificateClick(cert.url);
+                      }}
+                    >
+                      <FaExternalLinkAlt className="link-icon" />
+                    </div>
+                  </div>
                 </div>
                 <div className="certificate-glow"></div>
               </div>

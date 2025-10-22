@@ -251,7 +251,7 @@
 }
 
 /* ===================================================
-   🔹 Enhanced Certificates Section
+   🔹 Enhanced Certificates Section with Link Icon Only
 =================================================== */
 .certificates-section {
   width: 100%;
@@ -276,14 +276,12 @@
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(10px);
-  
-  
   height: 290px; /* Fixed height for consistency */
+  /* Removed cursor: pointer from here */
 }
 
 .certificate-card:hover {
   transform: translateY(-12px) scale(1.02);
-  
 }
 
 .certificate-image-wrapper {
@@ -302,15 +300,57 @@
 .certificate-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Changed from cover to contain to show whole image */
+  object-fit: contain;
   transition: all 0.4s ease;
-  filter: brightness(0.95);
   border-radius: 12px;
+}
+
+/* Certificate Overlay with Link Icon Only */
+.certificate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+}
+
+.certificate-card:hover .certificate-overlay {
+  opacity: 1;
+}
+
+.link-icon-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.link-icon-container:hover {
+  transform: scale(1.1);
+}
+
+.link-icon {
+  font-size: 52px;
+  color: #ffffff;
+  filter: drop-shadow(0 0 15px rgba(180, 21, 255, 0.9));
+  transition: all 0.4s ease;
+  transform: scale(0.8);
+}
+
+.certificate-card:hover .link-icon {
+  transform: scale(1);
 }
 
 .certificate-card:hover .certificate-img {
   transform: scale(1.05);
-  filter: brightness(1.05);
 }
 
 .certificate-glow {
@@ -456,6 +496,10 @@
   .certificate-card {
     height: 320px;
   }
+  
+  .link-icon {
+    font-size: 46px;
+  }
 }
 
 /* Tablet Portrait */
@@ -506,6 +550,10 @@
   
   .certificate-image-wrapper {
     padding: 12px;
+  }
+  
+  .link-icon {
+    font-size: 42px;
   }
   
   /* Fixed Show More Button for Tablet */
@@ -571,6 +619,10 @@
     transform: translateY(-8px) scale(1.01);
   }
   
+  .link-icon {
+    font-size: 38px;
+  }
+  
   /* Fixed Show More Button for Mobile Large */
   .about-showmore {
     padding: 8px 22px;
@@ -630,6 +682,10 @@
     height: 280px;
   }
   
+  .link-icon {
+    font-size: 34px;
+  }
+  
   /* Fixed Show More Button for Mobile Small */
   .about-showmore {
     padding: 8px 20px;
@@ -677,6 +733,10 @@
   
   .certificate-card {
     height: 250px;
+  }
+  
+  .link-icon {
+    font-size: 30px;
   }
   
   /* Fixed Show More Button for Very Small Mobile */
