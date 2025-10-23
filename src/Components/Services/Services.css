@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     gap: 80px;
-    margin: 80px 10%;
+    margin: -50px 10% 80px 10%;;
 }
 
 .services-title {
